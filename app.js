@@ -11,6 +11,7 @@ app.use(bodyParser.json())
 
 // cargar rutasT
 var taskRoutes = require('./routes/taskRoutes');
+var userRoutes = require('./routes/userRoutes');
 
 // configurar cabeceras y cors
 app.use((req, res, next) =>{
@@ -23,6 +24,7 @@ app.use((req, res, next) =>{
 
 // rutas
 app.use('/api/tasks', taskRoutes);
+app.use('/api/users', userRoutes);
 
 // configurar errores
 app.use(function (err, req, res, next) {

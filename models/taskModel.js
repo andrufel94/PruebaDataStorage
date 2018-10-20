@@ -6,7 +6,8 @@ const { Schema } = gstore;
 const taskSchema = new Schema({
     description: { type: String, required: true },
     created: { type: Date, required: true },
-    done: { type: Boolean, required: true }
+    done: { type: Boolean, required: true },
+    userId: { type: Number, required: true }
 });
 
 /**
@@ -17,5 +18,10 @@ const listSettings = {
     order: { property: 'created' }
 };
 taskSchema.queries('list', listSettings);
+
+// Add a custom method on your Schema
+taskSchema.methods.getUser = function getUser() {
+    return this.model('User').get(this.userId);
+};
 
 module.exports = gstore.model('Task', taskSchema);
